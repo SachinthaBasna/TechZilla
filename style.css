@@ -466,3 +466,10 @@ nav ul li button:hover {
   backdrop-filter: blur(10px);
   
 }
+
+.adminBody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}

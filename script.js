@@ -131,32 +131,30 @@ function updateUserStatus() {
 
   request = new XMLHttpRequest();
 
-
   request.onreadystatechange = function () {
     if (request.readyState == 4 && request.status) {
       response = request.responseText;
-      
-      document.getElementById('msgDiv').className = "d-block";
-      document.getElementById('msg').innerHTML = response;
 
-      if(response == "Deactive"){
-        document.getElementById('msgDiv').className = "d-block";
-        document.getElementById('msg').innerHTML = response;
-        document.getElementById('msg').className = "alert alert-success";
+      document.getElementById("msgDiv").className = "d-block";
+      document.getElementById("msg").innerHTML = response;
+
+      if (response == "Deactive") {
+        document.getElementById("msgDiv").className = "d-block";
+        document.getElementById("msg").innerHTML = response;
+        document.getElementById("msg").className = "alert alert-success";
         userId.value = "";
         loadUser();
-      } else if(response == "Active") {
-        document.getElementById('msgDiv').className = "d-block";
-        document.getElementById('msg').innerHTML = response;
-        document.getElementById('msg').className = "alert alert-success";
+      } else if (response == "Active") {
+        document.getElementById("msgDiv").className = "d-block";
+        document.getElementById("msg").innerHTML = response;
+        document.getElementById("msg").className = "alert alert-success";
 
         userId.value = "";
         loadUser();
-
       } else {
-        document.getElementById('msgDiv').className = "d-block";
-        document.getElementById('msg').innerHTML = response;
-        document.getElementById('msg').className = "alert alert-danger";
+        document.getElementById("msgDiv").className = "d-block";
+        document.getElementById("msg").innerHTML = response;
+        document.getElementById("msg").className = "alert alert-danger";
       }
     }
   };
@@ -165,7 +163,133 @@ function updateUserStatus() {
   request.send(f);
 }
 
-
-function reload(){
+function reload() {
   location.reload();
+}
+
+// brand Register
+
+function brand() {
+  var brand = document.getElementById("brand");
+  f = new FormData();
+
+  f.append("b", brand.value);
+
+  request = new XMLHttpRequest();
+
+  request.onreadystatechange = function () {
+    if (request.readyState == 4 && request.status == 200) {
+      response = request.responseText;
+      // alert(response);
+      document.getElementById("msgB").className = "d-block";
+      if (response == "Success") {
+        document.getElementById("msgB").innerHTML = response;
+        document.getElementById("msgB").className =
+          "d-block alert alert-success";
+      } else {
+        document.getElementById("msgB").innerHTML = response;
+        document.getElementById("msgB").className =
+          "d-block alert alert-danger";
+      }
+    }
+  };
+  request.open("POST", "brandRegisterProcess.php", true);
+  request.send(f);
+}
+
+// Category Register
+function catReg() {
+  var category = document.getElementById("cat");
+
+  // alert(category.value);
+
+  f = new FormData();
+
+  f.append("c", category.value);
+
+  request = new XMLHttpRequest();
+
+  request.onreadystatechange = function () {
+    if (request.readyState == 4 && request.status == 200) {
+      response = request.responseText;
+      // alert(response);
+      document.getElementById("msgC").className = "d-block";
+      if (response == "Success") {
+        document.getElementById("msgC").innerHTML = response;
+        document.getElementById("msgC").className =
+          "d-block alert alert-success";
+      } else {
+        document.getElementById("msgC").innerHTML = response;
+        document.getElementById("msgC").className =
+          "d-block alert alert-danger";
+      }
+    }
+  };
+
+  request.open("POST", "categoryRegisterProcess.php", true);
+  request.send(f);
+}
+
+function cpuReg() {
+  var cpu = document.getElementById("cpu");
+
+  // alert(cpu.value);
+
+  f = new FormData();
+
+  f.append("cpu", cpu.value);
+
+  request = new XMLHttpRequest();
+
+  request.onreadystatechange = function () {
+    if (request.readyState == 4 && request.status == 200) {
+      response = request.responseText;
+      // alert(response);
+      document.getElementById("msgCPU").className = "d-block";
+      if (response == "Success") {
+        document.getElementById("msgCPU").innerHTML = response;
+        document.getElementById("msgCPU").className =
+          "d-block alert alert-success";
+      } else {
+        document.getElementById("msgCPU").innerHTML = response;
+        document.getElementById("msgCPU").className =
+          "d-block alert alert-danger";
+      }
+    }
+  };
+
+  request.open("POST", "cpuRegisterProcess.php", true);
+  request.send(f);
+}
+
+function ramReg() {
+  var ram = document.getElementById("ram");
+
+  // alert(ram.value);
+
+  f = new FormData();
+
+  f.append("ram", ram.value);
+
+  request = new XMLHttpRequest();
+
+  request.onreadystatechange = function () {
+    if (request.readyState == 4 && request.status == 200) {
+      response = request.responseText;
+      // alert(response);
+      document.getElementById("msgRAM").className = "d-block";
+      if (response == "Success") {
+        document.getElementById("msgRAM").innerHTML = response;
+        document.getElementById("msgRAM").className =
+          "d-block alert alert-success";
+      } else {
+        document.getElementById("msgRAM").innerHTML = response;
+        document.getElementById("msgRAM").className =
+          "d-block alert alert-danger";
+      }
+    }
+  };
+
+  request.open("POST", "ramRegisterProcess.php", true);
+  request.send(f);
 }

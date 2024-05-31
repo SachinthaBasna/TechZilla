@@ -94,9 +94,8 @@ function adminSignIn() {
         document.getElementById("msg").innerHTML = response;
         document.getElementById("msg").className = "alert alert-success";
 
-        un.value = '';
-        pw.value = '';
-
+        un.value = "";
+        pw.value = "";
       } else {
         document.getElementById("msgDiv").className = "d-block";
         document.getElementById("msg").innerHTML = response;
@@ -108,7 +107,7 @@ function adminSignIn() {
   request.send(f);
 }
 
-function loadUser(){
+function loadUser() {
   var request = new XMLHttpRequest();
 
   request.onreadystatechange = function () {
@@ -121,4 +120,52 @@ function loadUser(){
 
   request.open("POST", "loadUserProcess.php", true);
   request.send();
+}
+
+function updateUserStatus() {
+  var userId = document.getElementById("uid");
+  // alert(userId.value);
+
+  var f = new FormData();
+  f.append("u", userId.value);
+
+  request = new XMLHttpRequest();
+
+
+  request.onreadystatechange = function () {
+    if (request.readyState == 4 && request.status) {
+      response = request.responseText;
+      
+      document.getElementById('msgDiv').className = "d-block";
+      document.getElementById('msg').innerHTML = response;
+
+      if(response == "Deactive"){
+        document.getElementById('msgDiv').className = "d-block";
+        document.getElementById('msg').innerHTML = response;
+        document.getElementById('msg').className = "alert alert-success";
+        userId.value = "";
+        loadUser();
+      } else if(response == "Active") {
+        document.getElementById('msgDiv').className = "d-block";
+        document.getElementById('msg').innerHTML = response;
+        document.getElementById('msg').className = "alert alert-success";
+
+        userId.value = "";
+        loadUser();
+
+      } else {
+        document.getElementById('msgDiv').className = "d-block";
+        document.getElementById('msg').innerHTML = response;
+        document.getElementById('msg').className = "alert alert-danger";
+      }
+    }
+  };
+
+  request.open("POST", "updateUserStatusProcess.php", true);
+  request.send(f);
+}
+
+
+function reload(){
+  location.reload();
 }

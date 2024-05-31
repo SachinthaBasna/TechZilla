@@ -24,7 +24,27 @@ if (isset($_SESSION["a"])) {
 
 
         <div class=" mt-5 col-12 table1">
+
+
             <h1 class="text-light">User Management</h1>
+
+            <div class="row col-10 d-flex justify-content-end">
+
+                <!-- Msg Div -->
+                <div id="msgDiv" onclick="reload();">
+                    <div class="alert alert-success d-none" id="msg"></div>
+                </div>
+                <!-- Msg Div -->
+
+                <!-- Change Status -->
+                <div class="col-2">
+                    <input type="text" class="form-control dark" placeholder="userId" id="uid">
+                </div>
+                <button type="button" class="btn btn-dark col-2" onclick="updateUserStatus();">Change Status</button>
+                <!-- Change Status -->
+            </div>
+
+
             <div class="col-10 mt-2">
                 <table class="table table-striped table-dark text-center table-hover">
                     <thead>

@@ -14,16 +14,18 @@
         <h2 class="text-center">Admin Login</h2>
 
         <div class="mt-5">
-            <label for="form-label" class="text-bold" >Username: </label>
-            <input type="text" class="form-control" placeholder="Ex: John Doe" id="un"/>
+            <label for="form-label" class="text-bold">Username: </label>
+            <input type="text" class="form-control" placeholder="Ex: John Doe" id="un" />
         </div>
 
         <div class="mt-3">
             <label for="form-label" class="text-bold">Password: </label>
-            <input type="password" class="form-control mb-3" placeholder="Ex: ********" id="pw"/>
+            <input type="password" class="form-control mb-3" placeholder="Ex: ********" id="pw" />
         </div>
 
-        <div class="alert alert-danger mt-2 d-none"></div>
+        <div class="d-none" id="msgDiv">
+            <div class="alert alert-danger mt-2" id="msg"></div>
+        </div>
 
         <div>
             <button class="btn btn-light col-12" onclick="adminSignIn();">Login</button>

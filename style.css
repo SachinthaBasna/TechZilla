@@ -446,3 +446,23 @@ nav ul li button:hover {
 .signinBody {
   background-color: #000000;
 }
+
+.admin-nav-bar .admin-nav:hover {
+  color: #b1ef42;
+}
+
+.table1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+
+}
+
+
+.table1 table {
+  opacity: .8;
+  backdrop-filter: blur(10px);
+
+}

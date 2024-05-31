@@ -85,13 +85,40 @@ function adminSignIn() {
 
   var request = new XMLHttpRequest();
 
-  request.onreadystatechange = function(){
-    if(request.readyState == 4 && request.status == 200){
+  request.onreadystatechange = function () {
+    if (request.readyState == 4 && request.status == 200) {
       var response = request.responseText;
-      alert(response);
-    } 
+      if (response == "Success") {
+        window.location = "adminDashboard.php";
+        document.getElementById("msgDiv").className = "d-block";
+        document.getElementById("msg").innerHTML = response;
+        document.getElementById("msg").className = "alert alert-success";
+
+        un.value = '';
+        pw.value = '';
+
+      } else {
+        document.getElementById("msgDiv").className = "d-block";
+        document.getElementById("msg").innerHTML = response;
+      }
+    }
   };
 
   request.open("POST", "adminSignInProcess.php", true);
   request.send(f);
+}
+
+function loadUser(){
+  var request = new XMLHttpRequest();
+
+  request.onreadystatechange = function () {
+    if (request.readyState == 4 && request.status == 200) {
+      var response = request.responseText;
+      document.getElementById("tb").innerHTML = response;
+      // alert(response);
+    }
+  };
+
+  request.open("POST", "loadUserProcess.php", true);
+  request.send();
 }

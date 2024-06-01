@@ -58,9 +58,9 @@ if (isset($_SESSION["a"])) {
                 <div class="row d-flex justify-content-center">
                     <div class="col-4 p-4 text-center">
                         <label for="form-label">Capacity</label>
-                        <input type="text" class="form-control">
-                        <div class="alert alert-danger mt-2 d-none"></div>
-                        <button class="btn btn-dark col-12 mt-2">Capacity Register</button>
+                        <input type="text" class="form-control" id="cap">
+                        <div class="alert alert-danger mt-2 d-none" id="msgCap"></div>
+                        <button class="btn btn-dark col-12 mt-2" onclick="capReg();">Capacity Register</button>
                     </div>
 
             </div>

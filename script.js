@@ -34,7 +34,7 @@ function register() {
         password.value = "";
       } else {
         document.getElementById("msg1").innerHTML = t;
-        document.getElementById("msg1").className = "mt-4 alert alert-danger";
+        document.getElementById("msg1").className = "alert alert-danger";
         document.getElementById("msgDiv1").className = "d-block";
       }
     }
@@ -293,3 +293,37 @@ function ramReg() {
   request.open("POST", "ramRegisterProcess.php", true);
   request.send(f);
 }
+
+
+function capReg() {
+  var cap = document.getElementById("cap");
+
+  // alert(cap.value);
+
+  f = new FormData();
+
+  f.append("cap", cap.value);
+
+  request = new XMLHttpRequest();
+
+  request.onreadystatechange = function () {
+    if (request.readyState == 4 && request.status == 200) {
+      response = request.responseText;
+      // alert(response);
+      document.getElementById("msgCap").className = "d-block";
+      if (response == "Success") {
+        document.getElementById("msgCap").innerHTML = response;
+        document.getElementById("msgCap").className =
+          "d-block alert alert-success";
+      } else {
+        document.getElementById("msgCap").innerHTML = response;
+        document.getElementById("msgCap").className =
+          "d-block alert alert-danger";
+      }
+    }
+  };
+
+  request.open("POST", "capacityRegisterProcess.php", true);
+  request.send(f);
+}
+

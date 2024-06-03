@@ -327,3 +327,42 @@ function capReg() {
   request.send(f);
 }
 
+
+
+// Stock Management
+function regProduct(){
+  var pname = document.getElementById('pname');
+  var brand = document.getElementById('brand');
+  var cat = document.getElementById('cat');
+  var cpu = document.getElementById('cpu');
+  var ram = document.getElementById('ram');
+  var capacity = document.getElementById('capacity');
+  var desc = document.getElementById('desc');
+  var file = document.getElementById('file');
+  
+  var f = new FormData();
+
+  f.append("pname", pname.value);
+  f.append("brand", brand.value);
+  f.append("cat", cat.value);
+  f.append("cpu", cpu.value);
+  f.append("ram", ram.value);
+  f.append("capacity", capacity.value);
+  f.append("desc", desc.value);
+
+  f.append("image", file.files[0]);
+
+  var request = new XMLHttpRequest();
+
+  request.onreadystatechange = function() {
+    if(request.readyState == 4 && request.status == 200){
+      var response = request.responseText;
+      alert (response);
+    }
+  };
+
+  request.open("POST", "productRegisterProcess.php", true);
+  request.send(f);
+  // alert("OK");
+
+}

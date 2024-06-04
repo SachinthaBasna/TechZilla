@@ -6,6 +6,6 @@
         <li><a href="adminDashboard.php" class="admin-nav nav-link">User management</a></li>
         <li><a href="adminProduct.php" class="admin-nav nav-link">Product Management</a></li>
         <li><a href="adminStock.php" class="admin-nav nav-link">Stock Management</a></li>
-        <li><a href="" class="admin-nav nav-link">Report</a></li>
+        <li><a href="adminReport.php" class="admin-nav nav-link">Report</a></li>
     </ul>
 </div>

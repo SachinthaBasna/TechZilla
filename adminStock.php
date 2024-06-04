@@ -112,7 +112,7 @@ if (isset($_SESSION["a"])) {
                                 for ($x = 0; $x < $num; $x++) {
                                     $data = $rs->fetch_assoc();
                                     ?>
-                                    <option value="<?php echo ($data["ram_id"]); ?>"><?php echo ($data["ram_size"]. "GB"); ?>
+                                    <option value="<?php echo ($data["ram_id"]); ?>"><?php echo ($data["ram_size"] . "GB"); ?>
                                     </option>
                                     <?php
                                 }
@@ -162,31 +162,43 @@ if (isset($_SESSION["a"])) {
 
 
 
+                <!-- Stock Management -->
                 <div class="col-6">
                     <h2 class="text-center">Stock Update</h2>
                     <div class="mb-3">
                         <label for="" class="form-label">Product Name</label>
-                        <select class="form-select">
-                            <option>Select</option>
-                            <option>MSI</option>
+                        <select class="form-select" id="selectProduct">
+                            <option value="0">Select</option>
+
+                            <?php
+                            $rs = Database::search("SELECT * FROM `product`");
+                            $num = $rs->num_rows;
+
+                            for ($i = 0; $i < $num; $i++) {
+                                $d = $rs->fetch_assoc();
+
+                                ?>
+                                <option value="<?php echo ($d["id"]) ?>"><?php echo ($d["name"]) ?></option>
+                                <?php
+                            }
+
+
+                            ?>
                         </select>
                     </div>
 
                     <div class="mb-3">
                         <label for="" class="form-label">Qty</label>
-                        <select class="form-select col-12">
-                            <option>Select</option>
-                            <option>1</option>
-                        </select>
+                        <input type="text" class="form-control" id="qty"/>
                     </div>
 
                     <div class="mb-3">
                         <label for="" class="form-label">Unit Price</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="uprice">
                     </div>
 
                     <div class="d-grid">
-                        <button class="btn btn-success">Update Stock</button>
+                        <button class="btn btn-success" onclick="updateStock();">Update Stock</button>
                     </div>
                 </div>
             </div>

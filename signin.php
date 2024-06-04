@@ -12,7 +12,7 @@
 
 <body class="body">
     <input type="checkbox" id="hamburger" />
-    <nav class="mt-4">
+    <nav>
         <label for="hamburger"><i
                 class="fa-solid fa-ellipsis-vertical nav-icon d-flex justify-content-center"></i></label>
         <div class="logo">
@@ -20,7 +20,7 @@
         </div>
         <ul>
             <li><a href="index.php" class="active">Home</a></li>
-            <li><a href="#product1">Shop</a></li>
+            <li><a href="products.php">Shop</a></li>
             <li><a href="#">Contact us</a></li>
         </ul>
         <div class="cart_wishlist">

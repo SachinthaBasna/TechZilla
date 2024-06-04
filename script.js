@@ -294,7 +294,6 @@ function ramReg() {
   request.send(f);
 }
 
-
 function capReg() {
   var cap = document.getElementById("cap");
 
@@ -327,19 +326,17 @@ function capReg() {
   request.send(f);
 }
 
-
-
 // Stock Management
-function regProduct(){
-  var pname = document.getElementById('pname');
-  var brand = document.getElementById('brand');
-  var cat = document.getElementById('cat');
-  var cpu = document.getElementById('cpu');
-  var ram = document.getElementById('ram');
-  var capacity = document.getElementById('capacity');
-  var desc = document.getElementById('desc');
-  var file = document.getElementById('file');
-  
+function regProduct() {
+  var pname = document.getElementById("pname");
+  var brand = document.getElementById("brand");
+  var cat = document.getElementById("cat");
+  var cpu = document.getElementById("cpu");
+  var ram = document.getElementById("ram");
+  var capacity = document.getElementById("capacity");
+  var desc = document.getElementById("desc");
+  var file = document.getElementById("file");
+
   var f = new FormData();
 
   f.append("pname", pname.value);
@@ -354,15 +351,140 @@ function regProduct(){
 
   var request = new XMLHttpRequest();
 
-  request.onreadystatechange = function() {
-    if(request.readyState == 4 && request.status == 200){
+  request.onreadystatechange = function () {
+    if (request.readyState == 4 && request.status == 200) {
       var response = request.responseText;
-      alert (response);
+      alert(response);
+      location.reload();
     }
   };
 
   request.open("POST", "productRegisterProcess.php", true);
   request.send(f);
   // alert("OK");
+}
 
+
+
+function updateStock() {
+  // alert("OK");
+  var pname = document.getElementById("selectProduct");
+  var qty = document.getElementById("qty");
+  var price = document.getElementById("uprice");
+
+  var f = new FormData();
+  f.append("p", pname.value);
+  f.append("q", qty.value);
+  f.append("up", price.value);
+
+
+  var r = new XMLHttpRequest();
+
+  r.onreadystatechange = function () {
+    if (r.readyState == 4 && r.status == 200) {
+      var response = r.responseText;
+      alert(response);
+      location.reload();
+    }
+  };
+
+  r.open("POST", "updateStockProcess.php", true);
+  r.send(f);
+}
+
+
+function printStock(){
+  document.getElementById('print').className = "table table-responsive table-bordered table-white d-print-block text-center d-print-table";
+  window.print();
+
+  document.getElementById('print').className = "table table-responsive table-bordered table-dark d-print-block text-center d-print-table";
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function singleProductview(){
+  
+}
+
+function loadproduct() {
+  // alert("ok");
+  var r = new XMLHttpRequest();
+
+  r.onreadystatechange = function () {
+    if (r.readyState == 4 && r.status == 200) {
+      // alert("ok");
+      var response = r.responseText;
+      document.getElementById("productDetails").innerHTML = response;
+    }
+  };
+
+  r.open("POST", "loadProductProcess.php", true);
+  r.send();
+}
+
+function searchProduct() {
+  var search = document.getElementById("searchBar");
+
+  var f = new FormData();
+  f.append("search", search.value);
+
+  var r = new XMLHttpRequest();
+
+  r.onreadystatechange = function () {
+    if (r.readyState == 4 && r.status == 200) {
+      // alert("ok");
+      var response = r.responseText;
+        document.getElementById("productDetails").innerHTML = response;
+        // alert(response);
+    }
+  };
+
+  r.open("POST", "searchProductProcess.php", true);
+  r.send(f);
 }

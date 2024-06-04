@@ -91,6 +91,6 @@ if (isset($_SESSION["a"])) {
     <?php
 
 } else {
-    echo ("You're not a admin mf");
+    echo ("You're not a admin!");
 }
 ?>

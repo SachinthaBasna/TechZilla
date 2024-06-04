@@ -36,9 +36,24 @@ html {
 }
 
 .body {
-  background-color: rgb(10, 0, 20);
+  background-color: #00140d;
   font-family: "Roboto", sans-serif;
   overflow-x: hidden;
+  animation: bgAnim 20s infinite;
+}
+
+@keyframes bgAnim {
+  25%{
+    background-color: #00050f;
+  }
+
+  50%{
+    background-color: #0e0014;
+  }
+
+  75%{
+    background-color: #101400;
+  }
 }
 
 .logo img {
@@ -51,7 +66,9 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background-color: rgb(10, 0, 20);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  z-index: 10;
 }
 
 nav ul {
@@ -473,4 +490,24 @@ nav ul li button:hover {
   align-items: center;
   justify-content: center;
   height: 100vh;
+}
+
+@media print {
+  body{
+    visibility: hidden;
+  }
+
+  #print {
+    opacity: 1;
+    visibility: visible;
+    color: black;
+  }
+
+  #print table {
+    background-color: white;
+    color: black;
+  }
+  #print button {
+    display: none;
+  }
 }

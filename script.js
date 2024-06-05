@@ -1,3 +1,4 @@
+// User Register
 function register() {
   var fname = document.getElementById("fname");
   var lname = document.getElementById("lname");
@@ -44,6 +45,7 @@ function register() {
   r.send(f);
 }
 
+// User SignIn
 function signIn() {
   var un = document.getElementById("un");
   var pw = document.getElementById("pw");
@@ -107,6 +109,7 @@ function adminSignIn() {
   request.send(f);
 }
 
+// Load User
 function loadUser() {
   var request = new XMLHttpRequest();
 
@@ -122,6 +125,7 @@ function loadUser() {
   request.send();
 }
 
+// Update User Status
 function updateUserStatus() {
   var userId = document.getElementById("uid");
   // alert(userId.value);
@@ -168,7 +172,6 @@ function reload() {
 }
 
 // brand Register
-
 function brand() {
   var brand = document.getElementById("brand");
   f = new FormData();
@@ -230,6 +233,7 @@ function catReg() {
   request.send(f);
 }
 
+// cpu register
 function cpuReg() {
   var cpu = document.getElementById("cpu");
 
@@ -262,6 +266,7 @@ function cpuReg() {
   request.send(f);
 }
 
+// Ram Register
 function ramReg() {
   var ram = document.getElementById("ram");
 
@@ -294,6 +299,7 @@ function ramReg() {
   request.send(f);
 }
 
+// capacity Register
 function capReg() {
   var cap = document.getElementById("cap");
 
@@ -364,8 +370,7 @@ function regProduct() {
   // alert("OK");
 }
 
-
-
+// Update Stock
 function updateStock() {
   // alert("OK");
   var pname = document.getElementById("selectProduct");
@@ -376,7 +381,6 @@ function updateStock() {
   f.append("p", pname.value);
   f.append("q", qty.value);
   f.append("up", price.value);
-
 
   var r = new XMLHttpRequest();
 
@@ -392,67 +396,25 @@ function updateStock() {
   r.send(f);
 }
 
-
-function printStock(){
-  document.getElementById('print').className = "table table-responsive table-bordered table-white d-print-block text-center d-print-table";
+function printStock() {
+  document.getElementById("print").className =
+    "table table-responsive table-bordered table-white d-print-block text-center d-print-table";
   window.print();
 
-  document.getElementById('print').className = "table table-responsive table-bordered table-dark d-print-block text-center d-print-table";
-
+  document.getElementById("print").className =
+    "table table-responsive table-bordered table-dark d-print-block text-center d-print-table";
 }
 
+// --------------------------------------------- Front End -------------------------------------------
 
+// LoadProduct
+function loadproduct(x) {
+  var page = x;
+  // alert(x);
 
+  var f = new FormData();
+  f.append("p", page);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function singleProductview(){
-  
-}
-
-function loadproduct() {
   // alert("ok");
   var r = new XMLHttpRequest();
 
@@ -465,9 +427,10 @@ function loadproduct() {
   };
 
   r.open("POST", "loadProductProcess.php", true);
-  r.send();
+  r.send(f);
 }
 
+// Search Product
 function searchProduct() {
   var search = document.getElementById("searchBar");
 
@@ -480,11 +443,111 @@ function searchProduct() {
     if (r.readyState == 4 && r.status == 200) {
       // alert("ok");
       var response = r.responseText;
-        document.getElementById("productDetails").innerHTML = response;
-        // alert(response);
+      document.getElementById("productDetails").innerHTML = response;
+      // alert(response);
     }
   };
 
   r.open("POST", "searchProductProcess.php", true);
   r.send(f);
+}
+
+// Filter Category
+function catFilter() {
+  var filter = document.getElementById("filter");
+
+  var f = new FormData();
+  f.append("filter", filter.value);
+
+  // alert(filter.value)
+
+  var r = new XMLHttpRequest();
+
+  r.onreadystatechange = function () {
+    if (r.readyState == 4 && r.status == 200) {
+      // alert("ok");
+      var response = r.responseText;
+      document.getElementById("productDetails").innerHTML = response;
+      // alert(response);
+    }
+  };
+
+  r.open("POST", "categoryFilterProcess.php", true);
+  r.send(f);
+}
+
+function reloadPage() {
+  window.reload();
+}
+
+// Logout user
+function logoutUser() {
+  var r = new XMLHttpRequest();
+
+  r.onreadystatechange = function () {
+    if (r.readyState == 4 && r.status == 200) {
+      // alert("ok");
+      var response = r.responseText;
+      // document.getElementById("productDetails").innerHTML = response;
+      alert("Logout Successfull");
+      window.reload();
+      // alert(response);
+    }
+  };
+
+  r.open("POST", "userLogoutProcess.php", true);
+  r.send();
+}
+
+function updateUserDetails() {
+  var fname = document.getElementById("fname");
+  var lname = document.getElementById("lname");
+  var mobile = document.getElementById("mobile");
+  var email = document.getElementById("email");
+  var line1 = document.getElementById("line1");
+  var line2 = document.getElementById("line2");
+  var pw = document.getElementById("password");
+  var no = document.getElementById("no");
+  var img = document.getElementById("file");
+
+  var f = new FormData();
+
+  f.append("fname", fname.value);
+  f.append("lname", lname.value);
+  f.append("mobile", mobile.value);
+  f.append("email", email.value);
+  f.append("line1", line1.value);
+  f.append("line2", line2.value);
+  f.append("pw", pw.value);
+  f.append("no", no.value);
+
+  f.append("img", img.files[0]);
+
+  var r = new XMLHttpRequest();
+
+  r.onreadystatechange = function () {
+    if (r.readyState == 4 && r.status == 200) {
+      var respo = r.responseText;
+      alert(respo);
+      window.reload();
+    }
+  };
+
+  r.open("POST", "updateUserDetailsProcess.php", true);
+  r.send(f);
+}
+
+function singleProductview(stockId) {
+  var r = new XMLHttpRequest();
+
+
+
+  r.onreadystatechange = function () {
+    if (r.readyState == 4 && r.status == 200) {
+      window.location = "singleProductview.php?stockId=" + encodeURIComponent(stockId);
+    }
+  };
+
+  r.open("GET", "singleProductview.php?stockId=" + encodeURIComponent(stockId), true);
+  r.send();
 }

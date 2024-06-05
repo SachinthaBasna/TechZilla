@@ -28,7 +28,7 @@ if (isset($_SESSION["a"])) {
 
         <div class="container-fluid">
             <h2 class="text-center">User Report</h2>
-            <div>
+            <div id="">
                 <table class="table table-responsive table-bordered table-dark d-print-block text-center d-print-table"
                     id="print">
 

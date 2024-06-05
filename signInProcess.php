@@ -24,7 +24,8 @@ if (empty($username)) {
             echo ("Success");
 
             $_SESSION["u"] = $d;
-
+            setcookie("username", $username, time() + (60 * 60 * 24 * 365));
+            setcookie("password", $password, time() + (60 * 60 * 24 * 365));
             if ($rememberme == "true") {
                 // Set Cookie
                 setcookie("username", $username, time() + (60 * 60 * 24 * 365));

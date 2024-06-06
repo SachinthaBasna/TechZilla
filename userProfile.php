@@ -38,35 +38,14 @@ if (isset($_SESSION["u"])) {
             <body class="body" id="body">
 
                 <input type="checkbox" id="hamburger" />
-                <!-- Nav Bar -->
-
-                <nav class="">
-                    <label for="hamburger"><i
-                            class="fa-solid fa-ellipsis-vertical nav-icon d-flex justify-content-center"></i></label>
-                    <div class="logo">
-                        <a href="index.php"><img src="Resources/Logo.png" alt="" /></a>
-                    </div>
-                    <ul>
-                        <li><a href="index.php" class="active">Home</a></li>
-                        <li><a href="products.php" data-toggle="tooltip" data-placement="bottom" title="All Products">Shop</a></li>
-                        <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Contact Us">Contact us</a></li>
-                        <li><button type="button" data-toggle="tooltip" data-placement="bottom" title="Log out"
-                                onclick="logoutUser();">Log out</button></li>
-                        <div class="cart_wishlist">
-                            <i class="fa-solid fa-cart-shopping" data-toggle="tooltip" data-placement="bottom"
-                                title="Your Cart"></i>
-                            <a href="userProfile.php"><i class="fa-solid fa-user" data-toggle="tooltip" data-placement="bottom"
-                                    title="User Profile"></i></a>
-                        </div>
-                </nav>
-                <!-- Nav Bar -->
+                <?php include 'navBar.php' ?>
 
 
                 <div class="container position position-relative mt-5">
                     <div class="row text-light gap-5">
                         <div class="col-4 d-flex flex-column">
                             <div class="img col-8 mt-5">
-                                <img src="<?php echo $d["img_path"]?>" alt="Profilie Picture" class="img-fluid">
+                                <img src="<?php echo $d["img_path"] ?>" alt="Profilie Picture" class="img-fluid">
                                 <input type="file" class="form-control mt-2" id="file">
                             </div>
                         </div>
@@ -84,17 +63,17 @@ if (isset($_SESSION["u"])) {
 
                                     <div class="col-6">
                                         <label for="lname" class="form-lable">Last Name</label>
-                                        <input type="text" id="lname" class="form-control"  value="<?php echo $d["lname"]; ?>">
+                                        <input type="text" id="lname" class="form-control" value="<?php echo $d["lname"]; ?>">
                                     </div>
 
                                     <div class="col-6 mt-2">
                                         <label for="mobile" class="form-lable">mobile</label>
-                                        <input type="text" id="mobile" class="form-control"  value="<?php echo $d["mobile"]; ?>">
+                                        <input type="text" id="mobile" class="form-control" value="<?php echo $d["mobile"]; ?>">
                                     </div>
 
                                     <div class="col-6 mt-2">
                                         <label for="email" class="form-lable">email</label>
-                                        <input type="email" id="email" class="form-control"  value="<?php echo $d["email"]; ?>">
+                                        <input type="email" id="email" class="form-control" value="<?php echo $d["email"]; ?>">
                                     </div>
 
                                     <div class="col-2 mt-2">
@@ -114,7 +93,8 @@ if (isset($_SESSION["u"])) {
 
                                     <div class="col-6 mt-2">
                                         <label for="password" class="form-lable">Password</label>
-                                        <input type="password" id="password" class="form-control" value="<?php echo $d["password"]; ?>">
+                                        <input type="password" id="password" class="form-control"
+                                            value="<?php echo $d["password"]; ?>">
                                     </div>
 
                                     <div class="col-6 mt-2">

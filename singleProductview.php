@@ -44,8 +44,8 @@ if (isset($_SESSION["u"])) {
         <body class="body text-light">
             <?php include 'navBar.php' ?>
 
-            <div class="container adminBody gap-5">
-                <div class="col-6 img-wrapper">
+            <div class="container d-flex justify-content-center flex-md-row flex-sm-column gap-5 adminBody">
+                <div class="col-6 img-wrapper max-vw-80">
                     <img class="" src="<?php echo ($d["path"]) ?>" height="500px">
                 </div>
                 <div class="d-flex flex-column mt-5">
@@ -60,7 +60,7 @@ if (isset($_SESSION["u"])) {
 
                     <div data-mdb-input-init class="col-3">
                         <label class="form-label" for="qty">Quentity</label>
-                        <input type="number" id="qty" class="form-control" value="0" />
+                        <input type="number" id="qty" class="form-control"/>
                         <p class="text-warning mt-2">Available Quantity: <?php echo($d['qty']);?></p>
                     </div>
 

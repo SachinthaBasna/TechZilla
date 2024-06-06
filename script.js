@@ -540,29 +540,135 @@ function updateUserDetails() {
 function singleProductview(stockId) {
   var r = new XMLHttpRequest();
 
-
-
   r.onreadystatechange = function () {
     if (r.readyState == 4 && r.status == 200) {
-      window.location = "singleProductview.php?stockId=" + encodeURIComponent(stockId);
+      window.location =
+        "singleProductview.php?stockId=" + encodeURIComponent(stockId);
     }
   };
 
-  r.open("GET", "singleProductview.php?stockId=" + encodeURIComponent(stockId), true);
+  r.open(
+    "GET",
+    "singleProductview.php?stockId=" + encodeURIComponent(stockId),
+    true
+  );
   r.send();
 }
 
-
-function addtoCart(x){
+function addtoCart(x) {
   // alert(x);
   var qty = document.getElementById("qty");
   var stockId = x;
 
   // check if qty is empty
-  if (qty.value !="") {
-    alert("ok");
+  if (qty.value != "") {
+    var f = new FormData();
+
+    f.append("s", stockId);
+    f.append("q", qty.value);
+
+    var r = new XMLHttpRequest();
+
+    r.onreadystatechange = function () {
+      if (r.readyState == 4 && r.status == 200) {
+        var response = r.responseText;
+        alert(response);
+        qty.value = "";
+      }
+    };
+
+    r.open("POST", "addCatProcess.php", true);
+    r.send(f);
   } else {
     alert("please enter your quentity");
   }
+}
 
+function loadCart() {
+  // alert("ok");
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function () {
+    if (request.readyState == 4 && request.status == 200) {
+      var response = request.responseText;
+      document.getElementById("cartBody").innerHTML = response;
+    }
+  };
+
+  request.open("POST", "loadCartProcess.php", true);
+  request.send();
+}
+
+function incrementCartQty(x) {
+  var cartId = x;
+  var qty = document.getElementById("qty" + x);
+  var newQty = parseInt(qty.value) + 1;
+
+  var f = new FormData();
+  f.append("c", cartId);
+  f.append("q", newQty);
+
+  var request = new XMLHttpRequest();
+
+  request.onreadystatechange = function () {
+    if (request.readyState == 4 && request.status == 200) {
+      var response = request.responseText;
+      if (response == "Success") {
+        qty.value = parseInt(qty.value) + 1;
+        loadCart();
+      } else {
+        alert(response);
+      }
+    }
+  };
+
+  request.open("POST", "updateCartQtyProcess.php", true);
+  request.send(f);
+}
+
+function decrementCartQty(x) {
+  var cartId = x;
+  var qty = document.getElementById("qty" + x);
+  var newQty = parseInt(qty.value) - 1;
+
+  var f = new FormData();
+  f.append("c", cartId);
+  f.append("q", newQty);
+
+  if (newQty > 0) {
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+      if (request.readyState == 4 && request.status == 200) {
+        var response = request.responseText;
+        if (response == "Success") {
+          qty.value = parseInt(qty.value) - 1;
+          loadCart();
+        } else {
+          alert(response);
+        }
+      }
+    };
+    request.open("POST", "updateCartQtyProcess.php", true);
+    request.send(f);
+  }
+}
+
+
+function removeCart(x){
+  if(confirm("Are You Sure deleting this item?")){
+    var f = new FormData();
+    f.append("c", x);
+    
+    request = new XMLHttpRequest();
+
+    request.onreadystatechange = function(){
+      if(request.readyState == 4 && request.status == 200){
+        var response = request.responseText;
+        alert(response);
+        window.reload();
+      }
+    };
+    request.open("POST", "removeCartProcess.php", true);
+    request.send(f);
+  }
 }

@@ -11,7 +11,7 @@
         <li><a href="#"  data-toggle="tooltip" data-placement="bottom" title="Contact Us">Contact us</a></li>
         <li><button type="button" data-toggle="tooltip" data-placement="bottom" title="Log out" onclick="logoutUser();">Log out</button></li>
     <div class="cart_wishlist">
-        <i class="fa-solid fa-cart-shopping"  data-toggle="tooltip" data-placement="bottom" title="Your Cart"></i>
+        <a href="cart.php"><i class="fa-solid fa-cart-shopping"  data-toggle="tooltip" data-placement="bottom" title="Your Cart"></i></a>
         <a href="userProfile.php"><i class="fa-solid fa-user" data-toggle="tooltip" data-placement="bottom" title="User Profile"></i></a>
     </div>
 </nav>

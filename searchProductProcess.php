@@ -4,10 +4,11 @@ include "connection.php";
 
 $search = $_POST["search"];
 
-$rs = Database::search("SELECT `product`.*, `category`.*
-FROM `product`
+$rs = Database::search("SELECT * FROM `stock`
+JOIN `product` ON `stock`.`product_id` = `product`.`id`
 JOIN `category` ON `product`.`cat_id` = `category`.`cat_id`
 WHERE `product`.`name` LIKE '%" . $search . "%'
+
 ");
 
 $num = $rs->num_rows;
@@ -22,7 +23,8 @@ for ($x = 0; $x < $num; $x++) {
 
 
 
-        <div class="row card col-1 d-flex justify-content-center align-items-center p-2">
+        <div class="row card col-1 d-flex justify-content-center align-items-center p-2"
+            onclick="singleProductview(<?php echo ($data['stock_id']) ?>)">
             <div>
                 <div class="img-wrapper overflow-auto flex-wrap"><img src="<?php echo ($data["path"]) ?>" draggable="false"
                         class="img-fluid" /></div>

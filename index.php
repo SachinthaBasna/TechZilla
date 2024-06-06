@@ -180,10 +180,29 @@ if (isset($_SESSION["u"])) {
       <div class="vertical2"></div>
     </div>
     <!-- Lines -->
+     
+    <!-- Nav Bar -->
 
-    <?php
-    include "navBar.php";
-    ?>
+    <nav class="fixed-top">
+      <label for="hamburger"><i class="fa-solid fa-ellipsis-vertical nav-icon d-flex justify-content-center"></i></label>
+      <div class="logo">
+        <a href="index.php"><img src="Resources/Logo.png" alt="" /></a>
+      </div>
+      <ul>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="products.php" data-toggle="tooltip" data-placement="bottom" title="All Products"
+            class="active">Shop</a></li>
+        <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Contact Us">Contact us</a></li>
+        <li><a href="signup.php"><button type="button" data-toggle="tooltip" data-placement="bottom"
+              title="Register">Login/Register</button></a></li>
+        <div class="cart_wishlist">
+          <a href="signin.php"><i class="fa-solid fa-cart-shopping" data-toggle="tooltip" data-placement="bottom"
+              title="Your Cart"></i></a>
+          <a href="signin.php"><i class="fa-solid fa-user" data-toggle="tooltip" data-placement="bottom"
+              title="User Profile"></i></a>
+        </div>
+    </nav>
+    <!-- Nav Bar -->
 
     <!-- Hero Section -->
     <div class="hero">

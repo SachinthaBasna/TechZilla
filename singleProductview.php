@@ -61,6 +61,7 @@ if (isset($_SESSION["u"])) {
                     <div data-mdb-input-init class="col-3">
                         <label class="form-label" for="qty">Quentity</label>
                         <input type="number" id="qty" class="form-control" value="0" />
+                        <p class="text-warning mt-2">Available Quantity: <?php echo($d['qty']);?></p>
                     </div>
 
                     <div data-mdb-input-init class="mt-3">
@@ -74,10 +75,11 @@ if (isset($_SESSION["u"])) {
                         <p class="opacity-75">CPU: <?php echo ($d["cpu_name"]) ?></p>
                         <p class="opacity-75">RAM: <?php echo ($d["ram_size"]) . "GB" ?></p>
                         <p class="opacity-75">Capacity: <?php echo ($d["capacity_size"]) . "GB" ?></p>
+
                     </div>
 
                     <div data-mdb-input-init class="row gap-2 mt-3">
-                        <button class="btn btn-dark col-5">Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
+                        <button class="btn btn-dark col-5" onclick="addtoCart(<?php  echo $d['stock_id'] ?>);">Add to cart <i class="fa-solid fa-cart-shopping"></i></button>  
                         <button class="btn btn-warning col-5">Buy Now $</button>
                     </div>
                 </div>

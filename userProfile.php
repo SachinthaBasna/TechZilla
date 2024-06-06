@@ -73,7 +73,7 @@ if (isset($_SESSION["u"])) {
 
                         <div class="col-6">
 
-                            <h1 class="mt-0 fw-bold">Sachintha Basnayaka</h1>
+                            <h1 class="mt-0 fw-bold"><?php echo $d["uname"]; ?></h1>
 
                             <div class="mt-5 p-2">
                                 <div class="row">

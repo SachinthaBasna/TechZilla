@@ -551,3 +551,18 @@ function singleProductview(stockId) {
   r.open("GET", "singleProductview.php?stockId=" + encodeURIComponent(stockId), true);
   r.send();
 }
+
+
+function addtoCart(x){
+  // alert(x);
+  var qty = document.getElementById("qty");
+  var stockId = x;
+
+  // check if qty is empty
+  if (qty.value !="") {
+    alert("ok");
+  } else {
+    alert("please enter your quentity");
+  }
+
+}

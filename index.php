@@ -145,18 +145,6 @@ if (isset($_SESSION["u"])) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
   <!-- Guest -->
   <?php
 } else {

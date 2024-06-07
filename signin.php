@@ -12,27 +12,25 @@
 
 <body class="body">
     <input type="checkbox" id="hamburger" />
-    <nav>
+
+    <nav class="fixed-top">
         <label for="hamburger"><i
                 class="fa-solid fa-ellipsis-vertical nav-icon d-flex justify-content-center"></i></label>
         <div class="logo">
             <a href="index.php"><img src="Resources/Logo.png" alt="" /></a>
         </div>
         <ul>
-            <li><a href="index.php" class="active">Home</a></li>
-            <li><a href="products.php">Shop</a></li>
-            <li><a href="#">Contact us</a></li>
-        </ul>
-        <div class="cart_wishlist">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <i class="fa-solid fa-heart"></i>
-        </div>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="products.php" data-toggle="tooltip" data-placement="bottom" title="All Products">Shop</a></li>
+            <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Contact Us">Contact us</a></li>
+            <li><a href="signup.php"><button type="button" data-toggle="tooltip" data-placement="bottom"
+                        title="Register">Login/Register</button></a></li>
+            </div>
     </nav>
 
 
 
-
-    <div class="container mt-5 col-12 d-flex justify-content-center align-items-center flex-column">
+    <div class="p-5 container mt-5 col-12 d-flex justify-content-center align-items-center flex-column">
 
         <!-- Login -->
         <div class="col-10 p-4 text-light ">
@@ -54,12 +52,16 @@
 
             <div class="mt-2 row">
                 <label for="form-label">user name</label>
-                <input type="text" class="form-control" id="un" value="<?php echo $username?>">
+                <input type="text" class="form-control" id="un" value="<?php echo $username ?>">
             </div>
 
             <div class="mt-2 row">
                 <label for="pw">Password</label>
-                <input type="password" class="form-control" id="pw" value="<?php echo $username?>">
+                <input type="password" class="form-control" id="pw" value="<?php echo $username ?>">
+            </div>
+
+            <div class="mt-2">
+                <a href="forgetPassword.php" class="fw-bold">Forget Password?</a>
             </div>
 
             <div class="mt-2 mb-2">

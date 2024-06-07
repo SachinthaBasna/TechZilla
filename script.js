@@ -146,6 +146,7 @@ function updateUserStatus() {
         document.getElementById("msgDiv").className = "d-block";
         document.getElementById("msg").innerHTML = response;
         document.getElementById("msg").className = "alert alert-success";
+
         userId.value = "";
         loadUser();
       } else if (response == "Active") {
@@ -159,6 +160,7 @@ function updateUserStatus() {
         document.getElementById("msgDiv").className = "d-block";
         document.getElementById("msg").innerHTML = response;
         document.getElementById("msg").className = "alert alert-danger";
+        loadUser();
       }
     }
   };
@@ -499,6 +501,7 @@ function logoutUser() {
   r.send();
 }
 
+// Update User Details
 function updateUserDetails() {
   var fname = document.getElementById("fname");
   var lname = document.getElementById("lname");
@@ -537,6 +540,7 @@ function updateUserDetails() {
   r.send(f);
 }
 
+// Single Product View
 function singleProductview(stockId) {
   var r = new XMLHttpRequest();
 
@@ -555,6 +559,7 @@ function singleProductview(stockId) {
   r.send();
 }
 
+// Add to Cart
 function addtoCart(x) {
   // alert(x);
   var qty = document.getElementById("qty");
@@ -584,6 +589,7 @@ function addtoCart(x) {
   }
 }
 
+// Load Cart
 function loadCart() {
   // alert("ok");
   var request = new XMLHttpRequest();
@@ -598,6 +604,7 @@ function loadCart() {
   request.send();
 }
 
+// Qty Increment
 function incrementCartQty(x) {
   var cartId = x;
   var qty = document.getElementById("qty" + x);
@@ -625,6 +632,7 @@ function incrementCartQty(x) {
   request.send(f);
 }
 
+// Qty Decrement
 function decrementCartQty(x) {
   var cartId = x;
   var qty = document.getElementById("qty" + x);
@@ -653,16 +661,16 @@ function decrementCartQty(x) {
   }
 }
 
-
-function removeCart(x){
-  if(confirm("Are You Sure deleting this item?")){
+// remove item from cart
+function removeCart(x) {
+  if (confirm("Are You Sure deleting this item?")) {
     var f = new FormData();
     f.append("c", x);
-    
+
     request = new XMLHttpRequest();
 
-    request.onreadystatechange = function(){
-      if(request.readyState == 4 && request.status == 200){
+    request.onreadystatechange = function () {
+      if (request.readyState == 4 && request.status == 200) {
         var response = request.responseText;
         alert(response);
         window.reload();
@@ -671,4 +679,149 @@ function removeCart(x){
     request.open("POST", "removeCartProcess.php", true);
     request.send(f);
   }
+}
+
+// Payment Checkout
+function checkOut() {
+  // alert("ok");
+  var f = new FormData();
+
+  // Check If request reserved from cart
+  f.append("cart", true);
+
+  var request = new XMLHttpRequest();
+
+  request.onreadystatechange = function () {
+    if (request.readyState == 4 && request.status == 200) {
+      var response = request.responseText;
+      // alert(response);
+
+      var payment = JSON.parse(response);
+      doCheckout(payment, "checkoutProcess.php");
+    }
+  };
+
+  request.open("POST", "paymentProcess.php", true);
+  request.send(f);
+}
+
+function doCheckout(payment, path) {
+  // Payment completed. It can be a successful failure.
+  payhere.onCompleted = function onCompleted(orderId) {
+    console.log("Payment completed. OrderID:" + orderId);
+    // Note: validate the payment and show success or failure page to the customer
+
+    var f = new FormData();
+    f.append("payment", JSON.stringify(payment));
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+      if (request.readyState == 4 && request.status == 200) {
+        var response = request.responseText;
+        // alert(response);
+        var order = JSON.parse(response);
+
+        if (response == "Success") {
+          window.location = "invoice.php";
+        } else {
+          alert(response);
+        }
+      }
+    };
+
+    request.open("POST", path, true);
+    request.send(f);
+  };
+
+  // Payment window closed
+  payhere.onDismissed = function onDismissed() {
+    // Note: Prompt user to pay again or show an error page
+    console.log("Payment dismissed");
+  };
+
+  // Error occurred
+  payhere.onError = function onError(error) {
+    // Note: show an error page
+    console.log("Error:" + error);
+  };
+
+  // Show the payhere.js popup, when "PayHere Pay" is clicked
+  // document.getElementById("payhere-payment").onclick = function (e) {
+  payhere.startPayment(payment);
+  // };
+}
+
+function forgetPassword() {
+  // alert("OK");
+  var email = document.getElementById("e");
+
+  if (email.value != "") {
+    // alert("ok");
+
+    var f = new FormData();
+    f.append("e", email.value);
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+      if (request.readyState == 4 && request.status == 200) {
+        var response = request.responseText;
+        // alert(response);
+
+        if (response == "success") {
+          document.getElementById("msg").innerHTML =
+            "Email send! Please check your mail box";
+          document.getElementById("msg").className = "alert alert-success";
+          document.getElementById("msgDiv").className = "d-block";
+        } else {
+          document.getElementById("msg").innerHTML = response;
+          document.getElementById("msg").className = "alert alert-danger";
+          document.getElementById("msgDiv").className = "d-block";
+        }
+      }
+    };
+
+    request.open("POST", "forgetPasswordProcess.php", true);
+    request.send(f);
+  } else {
+    alert("Please enter your valid Email");
+  }
+}
+
+function resetPassword() {
+  // alert("ok");
+
+  var vcode = document.getElementById("vcode");
+  var np = document.getElementById("np");
+  var np2 = document.getElementById("np2");
+
+  var f = new FormData();
+
+  f.append("vcode", vcode.value);
+  f.append("np", np.value);
+  f.append("np2", np2.value);
+
+  var request = new XMLHttpRequest();
+
+  request.onreadystatechange = function () {
+    if (request.readyState == 4 && request.status == 200) {
+      var response = request.responseText;
+      // alert(response);
+      if (response == "Success") {
+        document.getElementById("msg").innerHTML = response;
+        document.getElementById("msg").className = "alert alert-success";
+        document.getElementById("msgDiv").className = "d-block";
+
+        window.location = "SignIn.php";
+      } else {
+        document.getElementById("msg").innerHTML = response;
+        document.getElementById("msg").className = "alert alert-danger";
+        document.getElementById("msgDiv").className = "d-block";
+        window.reload();
+      }
+    }
+  };
+
+  request.open("POST", "resetPasswordProcess.php");
+  request.send(f);
 }

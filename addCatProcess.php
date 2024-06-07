@@ -37,6 +37,7 @@ if ($num > 0) {
     } else {
         if($stockQty >= $qty){
             Database::iud("INSERT INTO `cart`(`cart_qty`, `user_id`, `stock_stock_id`) VALUES ('".$qty."', '".$user["id"]."','".$stockId."')");
+            echo("Cart Item Added Successfully");
         } else {
             echo("Stock Quantity has been exceeded!");
         }

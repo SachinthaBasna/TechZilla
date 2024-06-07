@@ -67,7 +67,7 @@ if ($num > 0) {
             <h6>Number Of items: <?php echo $num?></h6>
             <h5>Delivery fee: Rs. 450</h5>
             <h2>Net Total: <span class="text-warning">Rs. <?php echo ($netTotal + 500) ?>.00/=</span></h2>
-            <button class="btn btn-success col-3 mt-2 mb-4">Checkout</button>
+            <button class="btn btn-success col-3 mt-2 mb-4" onclick="checkOut();">Checkout</button>
         </div>
 
         <!-- Checkout  -->

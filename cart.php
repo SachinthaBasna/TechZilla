@@ -37,21 +37,7 @@ if (isset($user)) {
         </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
         <script src="script.js"></script>
     </body>
 
